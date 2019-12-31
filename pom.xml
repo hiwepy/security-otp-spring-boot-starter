@@ -11,7 +11,7 @@
 	</parent>
 	
 	<groupId>com.github.hiwepy</groupId>
-	<artifactId>spring-boot-starter-security-otp</artifactId>
+	<artifactId>security-otp-spring-boot-starter</artifactId>
 	<description>Spring Boot Starter For Spring Security With OTP,HOTP,TOTP </description>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>${project.groupId}:${project.artifactId}</name>

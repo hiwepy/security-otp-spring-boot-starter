@@ -1,4 +1,4 @@
-# spring-boot-starter-security-jwt
+# security-otp-spring-boot-starter
 security starter for spring boot
 
 ### 说明
@@ -14,12 +14,11 @@ security starter for spring boot
 ``` xml
 <dependency>
 	<groupId>${project.groupId}</groupId>
-	<artifactId>spring-boot-starter-security-jwt</artifactId>
+	<artifactId>security-otp-spring-boot-starter</artifactId>
 	<version>${project.version}</version>
 </dependency>
 ```
 
 ### Sample
 
-[https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-security-jwt](https://github.com/vindell/spring-boot-starter-samples/tree/master/spring-boot-sample-security-jwt "spring-boot-sample-security-jwt")
 
