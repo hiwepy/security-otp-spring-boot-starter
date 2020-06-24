@@ -45,7 +45,7 @@ public class SecurityOTPFilterConfiguration {
     @ConditionalOnProperty(prefix = SecurityOTPProperties.PREFIX, value = "enabled", havingValue = "true")
    	@EnableConfigurationProperties({ SecurityOTPProperties.class, SecurityBizProperties.class })
     @Order(SecurityProperties.DEFAULT_FILTER_ORDER + 4)
-   	static class OTPWebSecurityConfigurerAdapter extends SecurityBizConfigurerAdapter {
+   	static class OTPWebSecurityConfigurerAdapter extends AbstractSecurityConfigurerAdapter {
     	
     	private final SecurityOTPAuthcProperties authcProperties;
     	
