@@ -54,7 +54,7 @@ public class OTPAuthenticationProcessingFilter extends AbstractAuthenticationPro
 			if (logger.isDebugEnabled()) {
 				logger.debug("Authentication method not supported. Request method: " + request.getMethod());
 			}
-			throw new AuthenticationMethodNotSupportedException(messages.getMessage(AuthResponseCode.SC_AUTHC_METHOD_NOT_ALLOWED.getMsgKey(), new Object[] { request.getMethod() }, 
+			throw new AuthenticationMethodNotSupportedException(messages.getMessage(AuthResponseCode.SC_METHOD_NOT_ALLOWED.getMsgKey(), new Object[] { request.getMethod() }, 
 					"Authentication method not supported. Request method:" + request.getMethod()));
 		}
         
