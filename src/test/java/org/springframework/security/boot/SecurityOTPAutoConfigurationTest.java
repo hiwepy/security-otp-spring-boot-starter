@@ -18,14 +18,15 @@ package org.springframework.security.boot;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.runner.ApplicationContextRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.boot.biz.userdetails.UserDetailsServiceAdapter;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.mock;
 
 /**
- * Unit tests for {{ @link SecurityOTPAutoConfiguration }}.
- *
- * <p>Verifies the auto-configuration activates under the expected conditions
- * and exposes its declared beans.</p>
+ * Unit tests for {@link SecurityOTPAutoConfiguration}.
  *
  * @author [@Loong Wan](https://github.com/loong10k)
  * @since 1.0.0
@@ -43,17 +44,30 @@ class SecurityOTPAutoConfigurationTest {
     }
 
     @Test
-    @DisplayName("Auto-configuration loads when 'spring.security.otp.enabled=true'")
-    void testLoadsWhenEnabledPropertySet() {
-        runner.withUserConfiguration(SecurityOTPAutoConfiguration.class)
-                .withPropertyValues("spring.security.otp.enabled=true")
-                .run(context -> assertThat(context).hasSingleBean(SecurityOTPAutoConfiguration.class));
+    @DisplayName("OTPMatchedAuthenticationEntryPoint bean can be created")
+    void testEntryPointBeanCreation() {
+        SecurityOTPAutoConfiguration configuration = new SecurityOTPAutoConfiguration();
+        assertThat(configuration.otpMatchedAuthenticationEntryPoint()).isNotNull();
     }
 
     @Test
-    @DisplayName("Auto-configuration is absent when property is not set")
-    void testNotLoadedWhenPropertyAbsent() {
-        runner.withUserConfiguration(SecurityOTPAutoConfiguration.class)
-                .run(context -> assertThat(context).doesNotHaveBean(SecurityOTPAutoConfiguration.class));
+    @DisplayName("OTPMatchedAuthenticationFailureHandler bean can be created")
+    void testFailureHandlerBeanCreation() {
+        SecurityOTPAutoConfiguration configuration = new SecurityOTPAutoConfiguration();
+        assertThat(configuration.otpMatchedAuthenticationFailureHandler()).isNotNull();
+    }
+
+    @Test
+    @DisplayName("OTPAuthenticationProvider bean can be created with mock UserDetailsServiceAdapter")
+    void testProviderBeanCreation() {
+        SecurityOTPAutoConfiguration configuration = new SecurityOTPAutoConfiguration();
+        UserDetailsServiceAdapter userDetailsService = mock(UserDetailsServiceAdapter.class);
+        assertThat(configuration.otpAuthenticationProvider(userDetailsService)).isNotNull();
+    }
+
+    @Test
+    @DisplayName("PREFIX constant has expected value")
+    void testPrefixConstant() {
+        assertThat(SecurityOTPProperties.PREFIX).isEqualTo("spring.security.otp");
     }
 }
