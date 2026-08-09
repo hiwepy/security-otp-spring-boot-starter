@@ -32,6 +32,12 @@ import org.springframework.security.web.authentication.AbstractAuthenticationPro
 import org.springframework.security.web.servlet.util.matcher.PathPatternRequestMatcher;
 import org.springframework.util.Assert;
 
+/**
+ * OTPAuthenticationFilter class.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class OTPAuthenticationFilter
 		extends AbstractAuthenticationProcessingFilter {
 

@@ -35,6 +35,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @AutoConfigureBefore({ ServletWebSecurityAutoConfiguration.class })
 @EnableConfigurationProperties({ SecurityOTPProperties.class })
+/**
+ * Filter configuration for SecurityOTP authentication.
+ * <p>Registers authentication filters and security filter chains.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class SecurityOTPFilterConfiguration {
     
     @Configuration

@@ -15,6 +15,13 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @AutoConfigureBefore(SecurityBizAutoConfiguration.class)
 @ConditionalOnProperty(prefix = SecurityOTPProperties.PREFIX, value = "enabled", havingValue = "true")
 @EnableConfigurationProperties({ SecurityBizProperties.class, SecurityOTPProperties.class })
+/**
+ * Auto-configuration for SecurityOTP integration.
+ * <p>Registers the necessary beans when the feature is enabled.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class SecurityOTPAutoConfiguration{
 	
 	@Bean

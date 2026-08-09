@@ -2,6 +2,12 @@ package org.springframework.security.boot.otp.exception;
 
 import org.springframework.security.core.AuthenticationException;
 
+/**
+ * Exception thrown for OTPIncorrect errors.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class OTPIncorrectException extends AuthenticationException {
 
 	// ~ Constructors

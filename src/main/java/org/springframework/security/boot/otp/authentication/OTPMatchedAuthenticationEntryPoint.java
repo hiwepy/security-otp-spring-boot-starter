@@ -38,6 +38,13 @@ import org.springframework.security.core.AuthenticationException;
 
 import com.alibaba.fastjson.JSONObject;
 
+/**
+ * Authentication entry point for OTP authentication errors.
+ * <p>Handles authentication exceptions by writing appropriate JSON error responses.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 public class OTPMatchedAuthenticationEntryPoint implements MatchedAuthenticationEntryPoint {
 	
 	protected MessageSourceAccessor messages = SpringSecurityBizMessageSource.getAccessor();
