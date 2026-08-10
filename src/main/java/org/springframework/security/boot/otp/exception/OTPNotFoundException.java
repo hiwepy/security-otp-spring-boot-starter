@@ -5,7 +5,7 @@ import org.springframework.security.core.AuthenticationException;
 /**
  * Exception thrown for OTPNotFound errors.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class OTPNotFoundException extends AuthenticationException {
