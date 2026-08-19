@@ -49,6 +49,12 @@ public class OTPMatchedAuthenticationEntryPoint implements MatchedAuthentication
 	
 	protected MessageSourceAccessor messages = SpringSecurityBizMessageSource.getAccessor();
 	
+	/**
+	 * Determines whether supports.
+	 *
+	 * @param e the e
+	 * @return the result
+	 */
 	@Override
 	public boolean supports(AuthenticationException e) {
 		return SubjectUtils.isAssignableFrom(e.getClass(), OTPNotFoundException.class,
@@ -56,6 +62,13 @@ public class OTPMatchedAuthenticationEntryPoint implements MatchedAuthentication
 				OTPInvalidException.class);
 	}
 
+	/**
+	 * commence.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @param e the e
+	 */
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)
 			throws IOException, ServletException {

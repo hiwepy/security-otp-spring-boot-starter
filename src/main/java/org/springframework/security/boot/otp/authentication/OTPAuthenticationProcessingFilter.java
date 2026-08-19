@@ -45,14 +45,31 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class OTPAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
 
 	protected MessageSourceAccessor messages = SpringSecurityBizMessageSource.getAccessor();
+    /**
+     * Constructs a new o t p authentication processing filter instance.
+     *
+     * @param objectMapper the object mapper
+     */
     public static final String SPRING_SECURITY_FORM_CODE_KEY = "otp";
     private String otpParameter = SPRING_SECURITY_FORM_CODE_KEY;
     private boolean postOnly = true;
 	
+    /**
+     * Constructs a new o t p authentication processing filter instance.
+     *
+     * @param objectMapper the object mapper
+     */
     public OTPAuthenticationProcessingFilter(ObjectMapper objectMapper) {
 		super(PathPatternRequestMatcher.pathPattern("/login/otp"));
     }
 
+    /**
+     * attempt Authentication.
+     *
+     * @param request the request
+     * @param response the response
+     * @return the result
+     */
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
             throws AuthenticationException, IOException, ServletException {
@@ -86,6 +103,12 @@ public class OTPAuthenticationProcessingFilter extends AbstractAuthenticationPro
 
     }
     
+    /**
+     * obtain One Time Password.
+     *
+     * @param request the request
+     * @return the result
+     */
     protected String obtainOneTimePassword(HttpServletRequest request) {
         return request.getParameter(otpParameter);
     }
@@ -103,22 +126,48 @@ public class OTPAuthenticationProcessingFilter extends AbstractAuthenticationPro
 		authRequest.setDetails(authenticationDetailsSource.buildDetails(request));
 	}
 	
+	/**
+	 * authentication Token.
+	 *
+	 * @param oneTimePassword the one time password
+	 * @return the result
+	 */
 	protected AbstractAuthenticationToken authenticationToken( String oneTimePassword ) {
 		return new OTPAuthenticationToken(oneTimePassword);
 	}
 
+	/**
+	 * Returns the otp parameter.
+	 *
+	 * @return the otp parameter
+	 */
 	public String getOtpParameter() {
 		return otpParameter;
 	}
 
+	/**
+	 * Sets the otp parameter.
+	 *
+	 * @param otpParameter the otp parameter
+	 */
 	public void setOtpParameter(String otpParameter) {
 		this.otpParameter = otpParameter;
 	}
 
+	/**
+	 * Returns the post only.
+	 *
+	 * @return the post only
+	 */
 	public boolean isPostOnly() {
 		return postOnly;
 	}
 
+	/**
+	 * Sets the post only.
+	 *
+	 * @param postOnly the post only
+	 */
 	public void setPostOnly(boolean postOnly) {
 		this.postOnly = postOnly;
 	}

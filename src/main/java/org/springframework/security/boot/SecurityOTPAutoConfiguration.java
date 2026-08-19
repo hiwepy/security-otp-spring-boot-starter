@@ -24,16 +24,32 @@ import org.springframework.security.crypto.password.PasswordEncoder;
  */
 public class SecurityOTPAutoConfiguration{
 	
+	/**
+	 * otp Matched Authentication Entry Point.
+	 *
+	 * @return the result
+	 */
 	@Bean
 	public OTPMatchedAuthenticationEntryPoint otpMatchedAuthenticationEntryPoint() {
 		return new OTPMatchedAuthenticationEntryPoint();
 	}
 	
+	/**
+	 * otp Matched Authentication Failure Handler.
+	 *
+	 * @return the result
+	 */
 	@Bean
 	public OTPMatchedAuthenticationFailureHandler otpMatchedAuthenticationFailureHandler() {
 		return new OTPMatchedAuthenticationFailureHandler();
 	}
 	 
+	/**
+	 * otp Authentication Provider.
+	 *
+	 * @param userDetailsService the user details service
+	 * @return the result
+	 */
 	@Bean
 	public OTPAuthenticationProvider otpAuthenticationProvider(
 			UserDetailsServiceAdapter userDetailsService) {

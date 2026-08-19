@@ -41,14 +41,29 @@ import org.springframework.util.Assert;
 public class OTPAuthenticationFilter
 		extends AbstractAuthenticationProcessingFilter {
 
+	/**
+	 * Constructs a new o t p authentication filter instance.
+	 *
+	 */
 	public static final String SPRING_SECURITY_ONE_TIME_PASSWORD_KEY = "otp";
 
 	private String oneTimePasswordParameter = SPRING_SECURITY_ONE_TIME_PASSWORD_KEY;
 
+	/**
+	 * Constructs a new o t p authentication filter instance.
+	 *
+	 */
 	public OTPAuthenticationFilter() {
 		super(PathPatternRequestMatcher.pathPattern("/**"));
 	}
 
+	/**
+	 * Determines whether requires authentication.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @return the result
+	 */
 	@Override
 	protected boolean requiresAuthentication(HttpServletRequest request, HttpServletResponse response) {
 		final Authentication auth;
@@ -57,6 +72,14 @@ public class OTPAuthenticationFilter
 			&& obtainOneTimePassword(request) != null;
 	}
 
+	/**
+	 * attempt Authentication.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @return the result
+	 * @throws AuthenticationException if an error occurs
+	 */
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request,
 			HttpServletResponse response) throws AuthenticationException {
@@ -65,6 +88,16 @@ public class OTPAuthenticationFilter
 		return this.getAuthenticationManager().authenticate(authRequest);
 	}
 
+	/**
+	 * successful Authentication.
+	 *
+	 * @param request the request
+	 * @param response the response
+	 * @param chain the chain
+	 * @param authResult the auth result
+	 * @throws IOException if an error occurs
+	 * @throws ServletException if an error occurs
+	 */
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
@@ -82,10 +115,21 @@ public class OTPAuthenticationFilter
 		chain.doFilter(request, response);
 	}
 
+	/**
+	 * obtain One Time Password.
+	 *
+	 * @param request the request
+	 * @return the result
+	 */
 	protected String obtainOneTimePassword(HttpServletRequest request) {
 		return request.getParameter(oneTimePasswordParameter);
 	}
 
+	/**
+	 * Sets the one time password parameter.
+	 *
+	 * @param oneTimePasswordParameter the one time password parameter
+	 */
 	public void setOneTimePasswordParameter(String oneTimePasswordParameter) {
 		Assert.hasText(oneTimePasswordParameter,
 			"One-time password parameter must not be empty or null");
